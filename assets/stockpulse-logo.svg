@@ -1,0 +1,13 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="StockPulse logo">
+  <defs>
+    <linearGradient id="bg" x1="10" y1="12" x2="110" y2="108" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2C7BE5"/>
+      <stop offset="1" stop-color="#1F3A5F"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="100" height="100" rx="24" fill="url(#bg)"/>
+  <path d="M36 74V48.5C36 41.5964 41.5964 36 48.5 36H67.5C74.4036 36 80 41.5964 80 48.5V61.5C80 68.4036 74.4036 74 67.5 74H36Z" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M31 82L46 67L55 76L68 62L89 82" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M66 36V48" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <path d="M82 44L66 44" stroke="white" stroke-width="6" stroke-linecap="round"/>
+</svg>

@@ -58,28 +58,66 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             font-family: Arial, sans-serif;
         }
 
+        :root {
+            --bg-dark: #0f2138;
+            --bg-mid: #1d3c67;
+            --primary: #2c7be5;
+            --primary-dark: #1f63c7;
+            --panel: #ffffff;
+            --panel-soft: #f4f8ff;
+            --text: #1f2d3d;
+            --muted: #62748a;
+            --border: rgba(18, 37, 53, 0.08);
+            --shadow: 0 18px 40px rgba(14, 32, 54, 0.18);
+        }
+
         body {
             margin: 0;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #1f3a5f, #2c7be5);
+            background: radial-gradient(circle at top, rgba(255,255,255,0.18), transparent 30%), linear-gradient(135deg, var(--bg-dark), var(--bg-mid));
         }
 
         .login-box {
             width: 100%;
-            max-width: 420px;
-            background: #ffffff;
-            padding: 35px 30px;
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            max-width: 430px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(6px);
+            padding: 32px 30px 28px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .brand-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .brand-logo {
+            width: 54px;
+            height: 54px;
+            display: block;
+            filter: drop-shadow(0 8px 18px rgba(44, 123, 229, 0.25));
+        }
+
+        .brand-name {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: 0.2px;
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 25px;
-            color: #1f3a5f;
+            margin: 0 0 22px;
+            color: var(--text);
+            font-size: 28px;
         }
 
         form {
@@ -89,62 +127,75 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         label {
             margin-bottom: 8px;
-            color: #333;
-            font-weight: 600;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 14px;
         }
 
         input, select {
             width: 100%;
             padding: 12px 14px;
             margin-bottom: 18px;
-            border: 1px solid #d9d9d9;
-            border-radius: 10px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             font-size: 15px;
             outline: none;
+            background: #f9fbff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
         }
 
         input:focus, select:focus {
-            border-color: #2c7be5;
-            box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.15);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(44, 123, 229, 0.12);
+            background: #fff;
         }
 
         button {
-            background: #2c7be5;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: #fff;
             border: none;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 13px 16px;
+            border-radius: 12px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 10px 18px rgba(44, 123, 229, 0.22);
         }
 
         button:hover {
-            background: #1f63c7;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 20px rgba(44, 123, 229, 0.28);
         }
 
         .message {
             margin-bottom: 18px;
             padding: 10px 12px;
-            border-radius: 8px;
-            background: #ffe2e2;
-            color: #a50000;
+            border-radius: 10px;
+            background: #ffe9e9;
+            color: #9c1e1e;
             font-size: 14px;
             text-align: center;
+            border: 1px solid rgba(156, 30, 30, 0.08);
         }
 
         .footer-text {
             text-align: center;
             margin-top: 18px;
-            color: #666;
+            color: var(--muted);
             font-size: 14px;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
     <div class="login-box">
-        <h2>Sales Inventory Login</h2>
+        <div class="brand-wrap">
+            <img class="brand-logo" src="assets/stockpulse-logo.svg" alt="StockPulse logo">
+            <div class="brand-name">StockPulse</div>
+        </div>
+
+        <h2>Login</h2>
 
         <?php if (!empty($message)): ?>
             <div class="message"><?= htmlspecialchars($message) ?></div>
@@ -167,7 +218,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <button type="submit">Login</button>
         </form>
 
-        <div class="footer-text">Welcome to the Inventory and Sales Management System</div>
+        <div class="footer-text">Welcome to StockPulse. A simple and efficient inventory management solution.</div>
     </div>
 </body>
 </html>

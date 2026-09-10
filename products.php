@@ -122,43 +122,81 @@ if ($search !== '') {
     <title>Products</title>
     <style>
         * { box-sizing: border-box; }
+
+        :root {
+            --bg: #f3f7fb;
+            --panel: #ffffff;
+            --panel-soft: #f8fbff;
+            --sidebar-dark: #102a43;
+            --sidebar-light: #1f3a5f;
+            --primary: #2c7be5;
+            --primary-dark: #1f63c7;
+            --text: #1f2d3d;
+            --muted: #5e7187;
+            --border: rgba(17, 35, 52, 0.08);
+            --shadow: 0 12px 28px rgba(15, 34, 56, 0.08);
+            --success: #1e8f5d;
+            --danger: #d84d5c;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #edf3f9;
-            color: #1f2d3d;
+            background: linear-gradient(180deg, #edf4fb 0%, #f7f9fc 100%);
+            color: var(--text);
         }
 
         .sidebar {
             width: 240px;
-            background: #1f3a5f;
+            background: linear-gradient(180deg, var(--sidebar-dark), var(--sidebar-light));
             color: white;
             position: fixed;
             top: 0;
             left: 0;
             bottom: 0;
-            padding: 25px 20px;
+            padding: 24px 18px;
+            box-shadow: 8px 0 24px rgba(16, 42, 67, 0.08);
         }
 
         .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 22px;
             font-weight: bold;
             margin-bottom: 30px;
-            color: #dfeeff;
+            color: #eaf4ff;
+            padding: 8px 6px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .brand-logo {
+            width: 28px;
+            height: 28px;
+            display: block;
         }
 
         .nav {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
+            margin-top: 12px;
         }
 
         .nav a {
             color: #dfeeff;
             text-decoration: none;
             padding: 12px 14px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.10);
+            border-color: rgba(255,255,255,0.05);
+            transform: translateX(2px);
         }
 
         .main {
@@ -167,13 +205,14 @@ if ($search !== '') {
         }
 
         .panel {
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            background: var(--panel);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
             padding: 25px;
         }
 
-        h1, h2 { color: #1f3a5f; }
+        h1, h2 { color: var(--text); }
         form {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -182,23 +221,31 @@ if ($search !== '') {
         }
         input, select, button {
             padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid #d7dfe9;
+            border-radius: 10px;
+            border: 1px solid var(--border);
             font-size: 14px;
+            background: #fbfdff;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.12);
         }
         button {
-            background: #2c7be5;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: #fff;
             border: none;
             cursor: pointer;
             font-weight: bold;
+            box-shadow: 0 10px 18px rgba(44, 123, 229, 0.18);
         }
         .message {
             margin: 10px 0 20px;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 10px 12px;
+            border-radius: 10px;
             background: #e9f7ef;
-            color: #167a41;
+            color: var(--success);
+            border: 1px solid rgba(30, 143, 93, 0.08);
         }
         table {
             width: 100%;
@@ -207,10 +254,13 @@ if ($search !== '') {
         }
         th, td {
             padding: 12px 10px;
-            border-bottom: 1px solid #e5eaf2;
+            border-bottom: 1px solid #e6edf7;
             text-align: left;
         }
-        th { background: #edf4ff; }
+        th { background: #edf5ff; }
+        tbody tr:hover {
+            background: #f9fbff;
+        }
         .topbar {
             display: flex;
             justify-content: space-between;
@@ -218,12 +268,13 @@ if ($search !== '') {
             margin-bottom: 20px;
         }
         .logout {
-            background: #2c7be5;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             text-decoration: none;
             padding: 10px 16px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: bold;
+            box-shadow: 0 10px 18px rgba(44, 123, 229, 0.18);
         }
         .toolbar {
             display: flex;
@@ -247,24 +298,27 @@ if ($search !== '') {
         }
         .edit-link, .delete-link {
             text-decoration: none;
-            padding: 6px 10px;
-            border-radius: 6px;
+            padding: 7px 10px;
+            border-radius: 8px;
             font-size: 13px;
             font-weight: bold;
         }
         .edit-link {
-            background: #eaf3ff;
-            color: #1f3a5f;
+            background: #edf5ff;
+            color: var(--text);
         }
         .delete-link {
-            background: #ffe5e5;
-            color: #b42318;
+            background: #feecef;
+            color: var(--danger);
         }
     </style>
 </head>
 <body>
     <aside class="sidebar">
-        <div class="brand">InventoryPro</div>
+        <div class="brand">
+            <img class="brand-logo" src="assets/stockpulse-logo.svg" alt="StockPulse logo">
+            <span>StockPulse</span>
+        </div>
         <nav class="nav">
             <a href="<?php echo strtolower($_SESSION['role']) === 'admin' ? 'admin.php' : 'cashier.php'; ?>">Dashboard</a>
             <a href="products.php">Products</a>
