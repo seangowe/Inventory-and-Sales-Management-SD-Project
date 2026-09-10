@@ -77,7 +77,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(circle at top, rgba(255,255,255,0.18), transparent 30%), linear-gradient(135deg, var(--bg-dark), var(--bg-mid));
+            background-image:
+                linear-gradient(135deg, rgba(15, 33, 56, 0.72), rgba(29, 60, 103, 0.68)),
+                url('https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         .login-box {
