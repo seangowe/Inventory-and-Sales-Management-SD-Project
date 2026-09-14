@@ -14,8 +14,9 @@ The project is a Inventory and Sales Management system for small and medium ente
 > - `products.php`: add/edit/list products stored in `products` table.
 > - `sales.php`: record sales, update stock, and write to `sales` table.
 > - `reports.php`: read `sales`/`products` data and display summaries/reports.
+> - `assets/styles.css`: shared external stylesheet used across the application for consistent styling.
 >
-> Overall flow: run the create scripts to set up DB/tables, create initial users, then use `login.php` to authenticate; after login pages use `connection.php` + sessions to enforce roles and perform CRUD on products, users, and sales; `logout.php` ends the session.
+> Overall flow: run the create scripts to set up DB/tables, create initial users, then use `login.php` to authenticate; after login pages use `connection.php` + sessions to enforce roles and perform CRUD on products, users, and sales; `logout.php` ends the session. Styling is centralized in `assets/styles.css` instead of inline CSS.
 
 
 StockPulse is a simple inventory and sales management system designed for small and medium businesses. It helps manage products, handle sales transactions, track stock levels, and generate basic reports using PHP and MySQL.
@@ -29,7 +30,7 @@ The system allows different users to log in based on their role:
 - Admin: full access to manage users, products, sales, and reports.
 - Cashier: can process sales and view available products.
 
-The application uses PHP for the backend, MySQL as the database, and HTML/CSS for the frontend interface.
+The application uses PHP for the backend, MySQL as the database, and HTML/CSS for the frontend interface. Styling is organized in a shared external stylesheet to keep the project cleaner and easier to maintain.
 
 ## Main Features
 
@@ -42,6 +43,7 @@ The application uses PHP for the backend, MySQL as the database, and HTML/CSS fo
 - Reports for total sales and revenue
 - Low-stock product monitoring
 - Session-based access control for protected pages
+- Centralized external CSS styling in `assets/styles.css` for cleaner code and easier maintenance
 
 ## Technology Stack
 
@@ -68,6 +70,7 @@ The application uses PHP for the backend, MySQL as the database, and HTML/CSS fo
 - `sales.php` - record sales and maintain stock updates
 - `users.php` - manage users (admin-level access)
 - `reports.php` - view sales and stock summary information
+- `assets/styles.css` - shared external stylesheet for the app interface
 - `assets/stockpulse-logo.svg` - application logo
 
 ## Database Design

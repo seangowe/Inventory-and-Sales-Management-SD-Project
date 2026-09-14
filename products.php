@@ -120,198 +120,8 @@ if ($search !== '') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
-    <style>
-        * { box-sizing: border-box; }
+    <link rel="stylesheet" href="assets/styles.css">
 
-        :root {
-            --bg: #f3f7fb;
-            --panel: #ffffff;
-            --panel-soft: #f8fbff;
-            --sidebar-dark: #102a43;
-            --sidebar-light: #1f3a5f;
-            --primary: #2c7be5;
-            --primary-dark: #1f63c7;
-            --text: #1f2d3d;
-            --muted: #5e7187;
-            --border: rgba(17, 35, 52, 0.08);
-            --shadow: 0 12px 28px rgba(15, 34, 56, 0.08);
-            --success: #1e8f5d;
-            --danger: #d84d5c;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(180deg, #edf4fb 0%, #f7f9fc 100%);
-            color: var(--text);
-        }
-
-        .sidebar {
-            width: 240px;
-            background: linear-gradient(180deg, var(--sidebar-dark), var(--sidebar-light));
-            color: white;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            padding: 24px 18px;
-            box-shadow: 8px 0 24px rgba(16, 42, 67, 0.08);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            color: #eaf4ff;
-            padding: 8px 6px 14px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .brand-logo {
-            width: 28px;
-            height: 28px;
-            display: block;
-        }
-
-        .nav {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        .nav a {
-            color: #dfeeff;
-            text-decoration: none;
-            padding: 12px 14px;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-        }
-
-        .nav a:hover {
-            background: rgba(255,255,255,0.10);
-            border-color: rgba(255,255,255,0.05);
-            transform: translateX(2px);
-        }
-
-        .main {
-            margin-left: 240px;
-            padding: 30px;
-        }
-
-        .panel {
-            background: var(--panel);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            padding: 25px;
-        }
-
-        h1, h2 { color: var(--text); }
-        form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        input, select, button {
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            font-size: 14px;
-            background: #fbfdff;
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.12);
-        }
-        button {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 10px 18px rgba(44, 123, 229, 0.18);
-        }
-        .message {
-            margin: 10px 0 20px;
-            padding: 10px 12px;
-            border-radius: 10px;
-            background: #e9f7ef;
-            color: var(--success);
-            border: 1px solid rgba(30, 143, 93, 0.08);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px 10px;
-            border-bottom: 1px solid #e6edf7;
-            text-align: left;
-        }
-        th { background: #edf5ff; }
-        tbody tr:hover {
-            background: #f9fbff;
-        }
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .logout {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            text-decoration: none;
-            padding: 10px 16px;
-            border-radius: 10px;
-            font-weight: bold;
-            box-shadow: 0 10px 18px rgba(44, 123, 229, 0.18);
-        }
-        .toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-        .search-box {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        .search-box input {
-            min-width: 220px;
-        }
-        .action-links {
-            display: flex;
-            gap: 10px;
-        }
-        .edit-link, .delete-link {
-            text-decoration: none;
-            padding: 7px 10px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: bold;
-        }
-        .edit-link {
-            background: #edf5ff;
-            color: var(--text);
-        }
-        .delete-link {
-            background: #feecef;
-            color: var(--danger);
-        }
-    </style>
 </head>
 <body>
     <aside class="sidebar">
@@ -366,7 +176,7 @@ if ($search !== '') {
                     <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Search by name or category">
                     <button type="submit">Search</button>
                     <?php if ($search !== ''): ?>
-                        <a href="products.php" style="text-decoration:none; color:#2c7be5; font-weight:bold;">Clear</a>
+                        <a href="products.php" class="clear-link">Clear</a>
                     <?php endif; ?>
                 </form>
             </div>
@@ -402,11 +212,11 @@ if ($search !== '') {
                                         <div class="action-links">
                                             <a class="edit-link" href="products.php?edit_id=<?php echo $product['id']; ?>">Edit</a>
                                             <a class="delete-link" href="products.php?delete_id=<?php echo $product['id']; ?>" onclick="return confirm('Delete this product?');">Delete</a>
-                                            <form method="POST" action="products.php" style="display:inline;">
+                                            <form method="POST" action="products.php" class="stock-form">
                                                 <input type="hidden" name="action" value="update_stock">
                                                 <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                                                <input type="number" name="stock" value="<?php echo htmlspecialchars($product['stock']); ?>" style="width:70px; padding:5px; border-radius:6px; border:1px solid #d7dfe9;" min="0">
-                                                <button type="submit" style="padding:6px 8px; font-size:12px;">Update Stock</button>
+                                                <input type="number" name="stock" value="<?php echo htmlspecialchars($product['stock']); ?>" class="stock-input" min="0">
+                                                <button type="submit" class="stock-button">Update Stock</button>
                                             </form>
                                         </div>
                                     </td>
